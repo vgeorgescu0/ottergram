@@ -129,6 +129,26 @@ a {
     font-size: 40px;
 }
 
+.detail-image-previous {
+    position: relative;
+    bottom: 30px;
+    left: 22px;
+    
+    color: white;
+    text-shadow: rgba(0, 0, 0, 0.9) 1px 2px 9px;
+    font-size: 30px;
+}
+
+.detail-image-next {
+    position: relative;
+    bottom: 30px;
+    right: 22px;
+    
+    color: white;
+    text-shadow: rgba(0, 0, 0, 0.9) 1px 2px 9px;
+    font-size: 30px;
+}
+
 .hidden-detail .detail-image-container {
     display: none;
 }
