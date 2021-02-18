@@ -2,8 +2,6 @@ var DETAIL_IMAGE_SELECTOR = '[data-image-role="target"]';
 var DETAIL_TITLE_SELECTOR = '[data-image-role="title"]';
 var DETAIL_FRAME_SELECTOR = '[data-image-role="frame"]';
 var THUMBNAIL_LINK_SELECTOR = '[data-image-role="trigger"]';
-var NEXT_LINK_SELECTOR = '[data-image-role="next"]';
-var PREVIOUS_LINK_SELECTOR = '[data-image-role="previous"]';
 var HIDDEN_DETAIL_CLASS = 'hidden-detail';
 var TINY_EFFECT_CLASS = 'is-tiny';
 var ESC_KEY = 27;
@@ -37,54 +35,6 @@ function addThumbClickHandler(thumb) {
     thumb.addEventListener('click', function (event) {
         event.preventDefault();
         setDetailsFromThumb(thumb);
-        showDetails();
-    });
-}
-
-function addNextClickHandler(thumbnails) {
-    'use strict';
-    var next = document.querySelector(NEXT_LINK_SELECTOR);
-    next.addEventListener('click', function () {
-        var detailImage = document.querySelector(DETAIL_IMAGE_SELECTOR);
-        var url = detailImage.getAttribute('src');
-        var index;
-        for (var i = 0; i < thumbnails.length; i++){
-            if (url == thumbnails[i].getAttribute('data-image-url')){
-                index = i;
-                break;
-            }
-        }
-        console.log(index);
-        if (index + 1 >= thumbnails.length){
-            setDetailsFromThumb(thumbnails[0]);
-        }
-        else{
-            setDetailsFromThumb(thumbnails[index+1]);
-        }
-        showDetails();
-    });
-}
-
-function addPreviousClickHandler(thumbnails) {
-    'use strict';
-    var previous = document.querySelector(PREVIOUS_LINK_SELECTOR);
-    previous.addEventListener('click', function () {
-        var detailImage = document.querySelector(DETAIL_IMAGE_SELECTOR);
-        var url = detailImage.getAttribute('src');
-        var index;
-        for (var i = 0; i < thumbnails.length; i++){
-            if (url == thumbnails[i].getAttribute('data-image-url')){
-                index = i;
-                break;
-            }
-        }
-        console.log(index);
-        if (index - 1 < 0){
-            setDetailsFromThumb(thumbnails[thumbnails.length - 1]);
-        }
-        else{
-            setDetailsFromThumb(thumbnails[index - 1]);
-        }
         showDetails();
     });
 }
@@ -127,8 +77,6 @@ function initializeEvents() {
     var thumbnails = getThumbnailsArray();
     thumbnails.forEach(addThumbClickHandler);
     addKeyPressHandler();
-    addNextClickHandler(thumbnails);
-    addPreviousClickHandler(thumbnails);
 }
 
 initializeEvents();
